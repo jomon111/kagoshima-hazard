@@ -78,6 +78,7 @@ let mymap = L.map('map',{
     center:[31.119304, 130.542668],
     zoom:9,
     maxZoom:17,
+    minZoom:8,
     maxBounds: eria,
     zoomControl:true,
     layers:[gsi_awai,liveCam,kouzui_max],
