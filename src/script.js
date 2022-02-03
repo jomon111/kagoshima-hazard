@@ -67,11 +67,18 @@ let overLayers = {
     "土砂災害警戒区域（急傾斜地の崩壊）": kyukeisya,
     "土砂災害警戒区域（地すべり）": zisuberi,
 };
+
+let eria = [
+    [32.256027, 125.590418],
+    [26.809602, 132.118053]
+];
+
 //マップのオプションたち
 let mymap = L.map('map',{
     center:[31.119304, 130.542668],
     zoom:9,
     maxZoom:17,
+    maxBounds: eria,
     zoomControl:true,
     layers:[gsi_awai,liveCam,kouzui_max],
     condensedAttributionControl: false
@@ -89,12 +96,19 @@ let lc = L.control.locate({
     strings: {
         title: "現在地を表示する",
     },
-    showPopup:false
+    showPopup:false,
+    onLocationError(){
+        alert('現在地を取得できませんでした');
+    },
+    onLocationOutsideMapBounds(){
+        alert('あなたは鹿児島県外にいますよ！');
+        lc.stop();
+    },
 }).addTo(mymap);
 //初期から現在地を探す？
 lc.start();
 
-//凡例たちの設定
+//ーーーーーーーーーーーーーー以下凡例関係の設定ーーーーーーーーーーーーーーー
 let htmlLegendKouzui = L.control.htmllegend({
     position:'bottomleft',
     disableVisibilityControls:true,
