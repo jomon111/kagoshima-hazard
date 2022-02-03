@@ -92,7 +92,7 @@ let lc = L.control.locate({
     showPopup:false
 }).addTo(mymap);
 //初期から現在地を探す？
-//lc.start();
+lc.start();
 
 //凡例たちの設定
 let htmlLegendKouzui = L.control.htmllegend({
