@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>鹿児島ハザードマップ</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+    <link href="./src/stylesheet.css" rel="stylesheet" />
+    <script src="./assets/livecam.geojson"></script>
+
+    <!-- https://github.com/domoritz/leaflet-locatecontrol -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
+    <!-- https://github.com/lennardv2/Leaflet.awesome-markers -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="./plugin/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
+    <script src="./plugin/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
+
+    <!-- https://github.com/targomo/Leaflet.CondensedAttribution -->
+    <link rel="stylesheet" href="./plugin/Leaflet.CondensedAttribution/dist/leaflet-control-condended-attribution.css" />
+    <script type="text/javascript" src="./plugin/Leaflet.CondensedAttribution/dist/leaflet-control-condended-attribution.js"></script>
+    
+    <!-- https://github.com/consbio/Leaflet.HtmlLegend -->
+    <link rel="stylesheet" href="./plugin/Leaflet.HtmlLegend/dist/L.Control.HtmlLegend.css"/>
+    <script src="./plugin/Leaflet.HtmlLegend/dist/L.Control.HtmlLegend.js"></script>
+
+</head>
+
+<body>
+    <div id="map"></div>
+    <script src="./src/script.js"></script>
+</body>
+</html>
