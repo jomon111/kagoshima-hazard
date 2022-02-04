@@ -26,6 +26,7 @@ let liveCam = L.geoJSON(livecam,{
             })
         })
     },
+    attribution: "<a href='http://www3.doboku-bousai.pref.kagoshima.jp/bousai/jsp/index.jsp'>鹿児島県河川砂防情報システム</a>(位置は個人調査)"
 });
 let kouzui_max = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin_data/{z}/{x}/{y}.png', {
     attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>"
@@ -53,7 +54,7 @@ let zisuberi = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/05_jisub
 let baseLayers = {
     "地理院地図 標準": gsi,
     "地理院地図 淡色": gsi_awai,
-    "地理院地図 オルソ": gsi_eisei,
+    "地理院地図 衛星画像": gsi_eisei,
     "OpenStreetMap 標準": osm,
 };
 //オーバレイ
@@ -87,11 +88,13 @@ let mymap = L.map('map',{
 //レイヤコントール追加
 L.control.layers(baseLayers,overLayers).addTo(mymap);
 
-//attributionのまとめプラグイン
+//attributionのまとめプラグインーーーーーーーーーーーーーーーーーーーーーーー
 L.control.condensedAttribution({
-    emblem: '<div class="emblem-wrap"><img src="./assets/info.png"/></div>',
+    emblem: '<div class="emblem-wrap"><i class="far fa-copyright"></i></div>',
+    prefix: '<a href="https://github.com/jomon111/kagoshima-hazard">Github</a>'
   }).addTo(mymap);
-//現在地の表示プラグイン
+
+//現在地の表示プラグインーーーーーーーーーーーーーーーーーーーーーーーーーーー
 let lc = L.control.locate({
     flyTo:true,
     strings: {
