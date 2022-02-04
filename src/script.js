@@ -12,7 +12,6 @@ let osm = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&amp;copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 });
 //ライブカメラ位置、オーバレイ画像
-//icon関係は、"https://qiita.com/hiro-ishi/items/970581499b27f14a8a38"を参考
 let liveCam = L.geoJSON(livecam,{
     onEachFeature: function(feature, layer){
         layer.bindPopup('<a href="'+ feature.properties.URL + '">' + feature.properties.名称 + 'の河川カメラ' + '</a>');
@@ -26,7 +25,7 @@ let liveCam = L.geoJSON(livecam,{
             })
         })
     },
-    attribution: "<a href='http://www3.doboku-bousai.pref.kagoshima.jp/bousai/jsp/index.jsp'>鹿児島県河川砂防情報システム</a>(位置は個人調査)"
+    attribution: "<a href='http://www3.doboku-bousai.pref.kagoshima.jp/bousai/jsp/index.jsp'>鹿児島県</a>※位置は個人調査"
 });
 let kouzui_max = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin_data/{z}/{x}/{y}.png', {
     attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>"
@@ -91,7 +90,7 @@ L.control.layers(baseLayers,overLayers).addTo(mymap);
 //attributionのまとめプラグインーーーーーーーーーーーーーーーーーーーーーーー
 L.control.condensedAttribution({
     emblem: '<div class="emblem-wrap"><i class="far fa-copyright"></i></div>',
-    prefix: '<a href="https://github.com/jomon111/kagoshima-hazard">Github</a>'
+    prefix: '<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | <a href="https://github.com/jomon111/kagoshima-hazard">Github</a>'
   }).addTo(mymap);
 
 //現在地の表示プラグインーーーーーーーーーーーーーーーーーーーーーーーーーーー

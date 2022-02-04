@@ -7,23 +7,35 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    vertical-align:center;
+}
+@media screen and (max-width: 541px){
+  .leaflet-condensed-attribution .attributes-body {
+    display: none;
+    padding: 0 4px 0 12px;
+    height: 20px;
+    line-height: 15px;  
+  }
+}
+@media screen and (min-width: 541px){
+  .leaflet-condensed-attribution .attributes-body {
+    display: none;
+    padding: 0 4px 0 12px;
+    height: 20px;
+    line-height: 30px;  
+  }
 }
 
-.leaflet-condensed-attribution .attributes-body {
-  display: none;
-  padding: 0 4px 0 12px;
-  height: 28px;
-  line-height: 28px;
-}
 
 .leaflet-condensed-attribution:hover .attributes-body {
   display: inline-block !important;
+  vertical-align: middle !important;
 }
 
 .leaflet-condensed-attribution .attributes-emblem {
   height: 30px;
   width: 30px;
-  font-size: 25px;
+  font-size: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -34,3 +46,4 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
+
