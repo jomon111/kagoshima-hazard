@@ -4,4 +4,6 @@
 
 素敵な河川カメラも公開されていたので、位置を探して落とし込みました！
 
+以下からみれます
 
+https://jomon111.github.io/kagoshima-hazard/
