@@ -11,6 +11,7 @@ let gsi_eisei = new L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}
 let osm = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&amp;copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 });
+
 //ライブカメラ位置、オーバレイ画像
 let liveCam = L.geoJSON(livecam,{
     onEachFeature: function(feature, layer){
@@ -25,28 +26,35 @@ let liveCam = L.geoJSON(livecam,{
             })
         })
     },
-    attribution: "<a href='http://www3.doboku-bousai.pref.kagoshima.jp/bousai/jsp/index.jsp'>鹿児島県</a>※位置は個人調査"
+    attribution: "<a href='http://www3.doboku-bousai.pref.kagoshima.jp/bousai/jsp/index.jsp'>鹿児島県土木部</a>※位置は個人調査"
 });
 let kouzui_max = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin_data/{z}/{x}/{y}.png', {
-    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>"
+    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>",
+    opacity:0.8
 });
 let kouzui_keikaku = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/01_flood_l1_shinsuishin_newlegend_data/{z}/{x}/{y}.png', {
-    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>"
+    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>",
+    opacity:0.8
 });
 let kouzui_time = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/01_flood_l2_keizoku_data/{z}/{x}/{y}.png', {
-    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>"
+    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>",
+    opacity:0.8
 });
 let tsunami = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/04_tsunami_newlegend_pref_data/46/{z}/{x}/{y}.png', {
-    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>"
+    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>",
+    opacity:0.8
 });
 let dosekiryu = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/05_dosekiryukeikaikuiki_data/46/{z}/{x}/{y}.png', {
-    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>"
+    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>",
+    opacity:0.8
 });
 let kyukeisya = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/05_kyukeishakeikaikuiki_data/46/{z}/{x}/{y}.png', {
-    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>"
+    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>",
+    opacity:0.8
 });
 let zisuberi = new L.tileLayer('https://disaportaldata.gsi.go.jp/raster/05_jisuberikeikaikuiki_data/46/{z}/{x}/{y}.png', {
-    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>"
+    attribution: "<a href='https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html#l2shinsuishin'>©ハザードマップポータルサイト</a>",
+    opacity:0.8
 });
 
 //ベースマップ
@@ -104,12 +112,23 @@ let lc = L.control.locate({
         alert('現在地を取得できませんでした');
     },
     onLocationOutsideMapBounds(){
-        alert('あなたは鹿児島県外にいますよ！');
+        alert('あなたは鹿児島にいないよ！');
         lc.stop();
     },
 }).addTo(mymap);
-//初期から現在地を探す？
-lc.start();
+
+//ダイアログプラグインーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    var options = {
+        title:null,
+        content:'<h3><u>はじめに</u></h3><p>このサイトは個人が作った<b>鹿児島県ハザードマップサイト</b>です。鹿児島県のハザードマップを改良＋河川カメラ情報を載せてみました。<br>現在地が鹿児島県じゃない人には<b>「鹿児島にいないよ！」</b>と教えてくれます！<br>ご意見やお問い合わせは<a href="https://forms.gle/r18wQ3vw3DVHAHyh9">こちら</a>からお願いします。</p><h3><u>各ボタンの説明</u></h3><p><img src="./assets/layers.png">　ハザードマップや背景地図を選ぶ（左下の凡例と連動）<br><img src="./assets/location-arrow.png">　現在地に飛ぶ</p><h3><u>使い方</u></h3><p>①このダイアログを読み終えたら右下の<b>OKボタンを押してください</b>。<br>②現在地の取得確認がでますので、許可すると現在地まで飛んでいきます。<br>③見たいハザードマップを右上のアイコンから選ぶと、凡例が左下に出ますので近所を確認してみましょう！</p><h3><u>留意点と注意点</u></h3><p><li>本サイトで提供するマップは、データ作成上の誤差を含んでおりますので、参考までにご利用ください。<li>また、本サイトのハザードマップ情報は、国交省の運用する<a href="https://disaportal.gsi.go.jp/">ハザードマップポータイルサイト</a>から取得しているため、ハザードマップポータイルサイトにない情報について、本サイトにおいても表示できておりませんので、ご注意ください。<li>本サイトの利用によって、直接または間接の損失・損害が発生した場合、一切の責任を負いません。<li>本サイトの河川カメラの外部リンク先は、<a href="https://www.pref.kagoshima.jp/ah08/infra/kasen-sabo/sabo/jyouhoushisutemu.html">鹿児島県土木部砂防課</a>になっております。</p>',
+        modal: true,
+        position:'center',
+        closeButton:false
+    };
+    var win =  L.control.window(mymap, options)
+    .prompt({callback:function(){
+        //OKボタンを押したら初期から現在地を探す
+        lc.start()}}).show()
 
 //ーーーーーーーーーーーーーー以下凡例関係の設定ーーーーーーーーーーーーーーー
 let htmlLegendKouzui = L.control.htmllegend({
