@@ -109,10 +109,10 @@ let lc = L.control.locate({
     },
     showPopup:false,
     onLocationError(){
-        alert('どけおっとよ？（※現在地が見つかりません）');
+        alert('現在地が見つかりません');
     },
     onLocationOutsideMapBounds(){
-        alert('おいはかごんまにおらんよ！（※鹿児島にいないよ）');
+        alert('あなたは鹿児島にいないよ！');
         lc.stop();
     },
 }).addTo(mymap);
